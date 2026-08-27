@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_academic_government_sync_wizard_form" model="ir.ui.view">
+            <field name="name">academic.government.sync.wizard.form</field>
+            <field name="model">academic.government.sync.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Universal Government Sync Bridge">
+                    <sheet>
+                        <div class="oe_title">
+                            <span class="o_form_label">Sinkronisasi Regulasi Nasional</span>
+                            <h1>Eksekusi Pelaporan Pemerintah</h1>
+                        </div>
+                        <group>
+                            <group string="Target Pelaporan">
+                                <field name="target_portal"/>
+                                <field name="academic_year_id"/>
+                            </group>
+                        </group>
+                        <group string="Hasil Eksekusi Sinkronisasi" invisible="not summary_report">
+                            <field name="summary_report" readonly="1" class="font-weight-bold text-success"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_execute_batch_government_sync" string="⚡ Eksekusi Sinkronisasi Sekarang" type="object" class="btn-primary" invisible="summary_report"/>
+                        <button string="Selesai / Tutup" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_academic_government_sync_wizard" model="ir.actions.act_window">
+            <field name="name">Sinkronisasi PDDikti / Dapodik / EMIS</field>
+            <field name="res_model">academic.government.sync.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

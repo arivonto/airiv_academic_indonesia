@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_academic_krs_tree" model="ir.ui.view">
+            <field name="name">academic.krs.list</field>
+            <field name="model">academic.krs</field>
+            <field name="arch" type="xml">
+                <list string="Kartu Rencana Studi (KRS)">
+                    <field name="name"/>
+                    <field name="student_id"/>
+                    <field name="academic_year_id"/>
+                    <field name="semester"/>
+                    <field name="total_sks"/>
+                    <field name="gpa_semester" string="IPS"/>
+                    <field name="pddikti_sync_status" widget="badge"/>
+                    <field name="state" widget="badge"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_academic_krs_form" model="ir.ui.view">
+            <field name="name">academic.krs.form</field>
+            <field name="model">academic.krs</field>
+            <field name="arch" type="xml">
+                <form string="Kartu Rencana Studi (KRS)">
+                    <header>
+                        <button name="action_submit_krs" string="Ajukan KRS" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                        <button name="action_approve_krs" string="Setujui Dosen Wali" type="object" class="btn-success" invisible="state != 'submitted'"/>
+                        <button name="action_publish_khs" string="Terbitkan KHS / Rapor" type="object" class="btn-info" invisible="state != 'approved'"/>
+                        <button name="action_sync_krs_to_pddikti" string="🏛️ Lapor ke PDDikti Feeder" type="object" class="btn-warning" invisible="state != 'graded'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,graded"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <span class="o_form_label">Kartu Rencana Studi / Rapor Semester</span>
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group>
+                            <group string="Peserta Didik">
+                                <field name="student_id"/>
+                                <field name="semester"/>
+                            </group>
+                            <group string="Periode &amp; Prestasi">
+                                <field name="academic_year_id"/>
+                                <field name="total_sks"/>
+                                <field name="gpa_semester" class="font-weight-bold text-success fs-3"/>
+                                <field name="pddikti_sync_status"/>
+                                <field name="pddikti_sync_log" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Mata Kuliah &amp; Komponen Nilai">
+                                <field name="line_ids">
+                                    <list string="Mata Kuliah" editable="bottom">
+                                        <field name="course_id"/>
+                                        <field name="credits"/>
+                                        <field name="grade_assignment"/>
+                                        <field name="grade_uts"/>
+                                        <field name="grade_uas"/>
+                                        <field name="grade_final_num"/>
+                                        <field name="grade_letter"/>
+                                        <field name="grade_point"/>
+                                        <field name="state" widget="badge"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_academic_krs" model="ir.actions.act_window">
+            <field name="name">KRS &amp; Nilai KHS</field>
+            <field name="res_model">academic.krs</field>
+            <field name="view_mode">list,form</field>
+        </record>
+    </data>
+</odoo>

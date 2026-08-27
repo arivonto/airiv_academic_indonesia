@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_academic_government_config_form" model="ir.ui.view">
+            <field name="name">academic.government.config.form</field>
+            <field name="model">academic.government.config</field>
+            <field name="arch" type="xml">
+                <form string="Konfigurasi Integrasi Pemerintah">
+                    <sheet>
+                        <div class="oe_title">
+                            <span class="o_form_label">Universal Government Gateway</span>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group string="Profil Institusi &amp; Mode">
+                                <field name="institution_tier"/>
+                                <field name="execution_mode" widget="badge" decoration-info="execution_mode == 'sandbox'" decoration-success="execution_mode == 'live'"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="🏛️ PDDikti Neo Feeder (Universitas)" invisible="institution_tier not in ['university', 'universal']">
+                                <group>
+                                    <group string="Kredensial WS Feeder">
+                                        <field name="pddikti_url"/>
+                                        <field name="pddikti_username"/>
+                                        <field name="pddikti_password" password="True"/>
+                                        <field name="pddikti_kode_pt"/>
+                                    </group>
+                                    <group string="Token Status">
+                                        <field name="pddikti_token_cache"/>
+                                        <button name="pddikti_get_token" string="Uji Sambungan &amp; Ambil Token" type="object" class="btn-primary"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="🏫 Dapodik WebService (Sekolah K-12)" invisible="institution_tier not in ['school_k12', 'universal']">
+                                <group>
+                                    <field name="dapodik_ws_url"/>
+                                    <field name="dapodik_npsn"/>
+                                    <field name="dapodik_ws_token"/>
+                                </group>
+                            </page>
+                            <page string="🕌 EMIS 4.0 Kemenag (Pesantren/Madrasah)" invisible="institution_tier not in ['pesantren', 'universal']">
+                                <group>
+                                    <field name="emis_url"/>
+                                    <field name="emis_nsm"/>
+                                    <field name="emis_api_key" password="True"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_academic_government_config" model="ir.actions.act_window">
+            <field name="name">Konfigurasi Gateway Pemerintah</field>
+            <field name="res_model">academic.government.config</field>
+            <field name="view_mode">list,form</field>
+        </record>
+    </data>
+</odoo>

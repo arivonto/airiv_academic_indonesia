@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_academic_root"
+                  name="Akademik &amp; Kampus"
+                  web_icon="airiv_academic_indonesia,static/description/icon.png"
+                  sequence="5"/>
+
+        <menuitem id="menu_academic_operations"
+                  name="Operasional Akademik"
+                  parent="menu_academic_root"
+                  sequence="1"/>
+
+        <menuitem id="menu_academic_student_item"
+                  name="Siswa &amp; Mahasiswa"
+                  parent="menu_academic_operations"
+                  action="action_academic_student"
+                  sequence="1"/>
+
+        <menuitem id="menu_academic_krs_item"
+                  name="KRS &amp; Nilai KHS / Rapor"
+                  parent="menu_academic_operations"
+                  action="action_academic_krs"
+                  sequence="2"/>
+
+        <menuitem id="menu_academic_government"
+                  name="Integrasi Pemerintah"
+                  parent="menu_academic_root"
+                  sequence="2"/>
+
+        <menuitem id="menu_academic_gov_sync"
+                  name="Sinkronisasi PDDikti / Dapodik / EMIS"
+                  parent="menu_academic_government"
+                  action="action_academic_government_sync_wizard"
+                  sequence="1"/>
+
+        <menuitem id="menu_academic_gov_cfg"
+                  name="Pengaturan Gateway Pemerintah"
+                  parent="menu_academic_government"
+                  action="action_academic_government_config"
+                  sequence="2"/>
+
+        <menuitem id="menu_academic_finance"
+                  name="Keuangan Pendidikan"
+                  parent="menu_academic_root"
+                  sequence="3"/>
+
+        <menuitem id="menu_academic_billing_gen"
+                  name="Generate SPP &amp; UKT"
+                  parent="menu_academic_finance"
+                  action="action_academic_billing_wizard"
+                  sequence="1"/>
+
+        <menuitem id="menu_academic_config"
+                  name="Konfigurasi"
+                  parent="menu_academic_root"
+                  sequence="10"/>
+
+        <menuitem id="menu_academic_year_item"
+                  name="Tahun Akademik"
+                  parent="menu_academic_config"
+                  action="action_academic_year"
+                  sequence="1"/>
+
+        <menuitem id="menu_academic_program_item"
+                  name="Program Studi / Jurusan"
+                  parent="menu_academic_config"
+                  action="action_academic_program"
+                  sequence="2"/>
+
+        <menuitem id="menu_academic_course_item"
+                  name="Mata Kuliah / Mapel"
+                  parent="menu_academic_config"
+                  action="action_academic_course"
+                  sequence="3"/>
+    </data>
+</odoo>

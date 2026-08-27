@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_academic_student_tree" model="ir.ui.view">
+            <field name="name">academic.student.list</field>
+            <field name="model">academic.student</field>
+            <field name="arch" type="xml">
+                <list string="Master Peserta Didik" decoration-success="academic_status == 'active'" decoration-muted="academic_status in ['graduated', 'dropped_out']">
+                    <field name="name"/>
+                    <field name="student_type" widget="badge"/>
+                    <field name="nim" string="NIM / NISN"/>
+                    <field name="program_id"/>
+                    <field name="current_semester"/>
+                    <field name="parent_name"/>
+                    <field name="parent_mobile"/>
+                    <field name="gpa_cumulative" widget="monetary" string="IPK"/>
+                    <field name="gov_sync_status" widget="badge"/>
+                    <field name="academic_status" widget="badge"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_academic_student_form" model="ir.ui.view">
+            <field name="name">academic.student.form</field>
+            <field name="model">academic.student</field>
+            <field name="arch" type="xml">
+                <form string="Data Siswa / Mahasiswa / Santri">
+                    <header>
+                        <button name="action_sync_to_government_portal" string="⚡ Sinkron ke Portal Pemerintah" type="object" class="btn-primary"/>
+                        <button name="action_issue_national_diploma_pin" string="🎓 Terbitkan PIN &amp; SIVIL Ijazah" type="object" class="btn-success" invisible="academic_status != 'active' or student_type != 'university'"/>
+                        <field name="gov_sync_status" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <span class="o_form_label">Peserta Didik Indonesia</span>
+                            <h1><field name="name" placeholder="Nama Lengkap Sesuai Ijazah / KTP"/></h1>
+                        </div>
+                        <group>
+                            <group string="Identitas Nasional &amp; Registrasi">
+                                <field name="student_type"/>
+                                <field name="nim" invisible="student_type != 'university'"/>
+                                <field name="nisn" invisible="student_type == 'university'"/>
+                                <field name="nis" invisible="student_type == 'university'"/>
+                                <field name="nik"/>
+                                <field name="gender"/>
+                                <field name="birth_place"/>
+                                <field name="birth_date"/>
+                            </group>
+                            <group string="Status Akademik &amp; Jenjang">
+                                <field name="program_id"/>
+                                <field name="faculty_id"/>
+                                <field name="current_semester"/>
+                                <field name="academic_status"/>
+                                <field name="gpa_cumulative" class="font-weight-bold text-success fs-3"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="🏛️ Integrasi Pemerintah &amp; Ijazah">
+                                <group>
+                                    <group string="Status Sinkronisasi">
+                                        <field name="gov_sync_id" readonly="1"/>
+                                        <field name="is_graduated"/>
+                                        <field name="graduation_date" invisible="not is_graduated"/>
+                                    </group>
+                                    <group string="PIN &amp; Verifikasi SIVIL Kemendikbud">
+                                        <field name="pin_ijazah_number" readonly="1" class="font-monospace text-primary font-weight-bold"/>
+                                        <field name="sivil_verification_url" widget="url" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Orang Tua &amp; WhatsApp">
+                                <group>
+                                    <group string="Kontak Wali">
+                                        <field name="parent_name"/>
+                                        <field name="parent_mobile" widget="phone"/>
+                                        <field name="partner_id"/>
+                                    </group>
+                                    <group string="Alamat">
+                                        <field name="address"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Pengaturan Biaya Pendidikan (SPP / UKT)">
+                                <group>
+                                    <group string="Perguruan Tinggi" invisible="student_type != 'university'">
+                                        <field name="ukt_tier"/>
+                                    </group>
+                                    <group string="Sekolah / Pesantren" invisible="student_type == 'university'">
+                                        <field name="spp_monthly_amount"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Riwayat KRS &amp; Rapor (KHS)">
+                                <field name="krs_ids" readonly="1">
+                                    <list string="KRS">
+                                        <field name="name"/>
+                                        <field name="academic_year_id"/>
+                                        <field name="semester"/>
+                                        <field name="total_sks"/>
+                                        <field name="gpa_semester"/>
+                                        <field name="pddikti_sync_status" widget="badge"/>
+                                        <field name="state" widget="badge"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_academic_student" model="ir.actions.act_window">
+            <field name="name">Siswa &amp; Mahasiswa</field>
+            <field name="res_model">academic.student</field>
+            <field name="view_mode">list,form</field>
+        </record>
+    </data>
+</odoo>

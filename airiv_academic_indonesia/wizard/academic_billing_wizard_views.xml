@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_academic_billing_wizard_form" model="ir.ui.view">
+            <field name="name">academic.billing.wizard.form</field>
+            <field name="model">academic.billing.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Batch Tagihan SPP &amp; UKT Otomatis">
+                    <sheet>
+                        <div class="oe_title">
+                            <span class="o_form_label">Financial Education Hub</span>
+                            <h1>Generate Tagihan Massal</h1>
+                        </div>
+                        <group>
+                            <group string="Parameter Tagihan">
+                                <field name="billing_type"/>
+                                <field name="academic_year_id"/>
+                                <field name="month_name" invisible="billing_type != 'spp_monthly'"/>
+                            </group>
+                            <group string="Sasaran">
+                                <field name="program_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_generate_batch_invoices" string="🚀 Buat Draf Faktur Pendidikan" type="object" class="btn-primary"/>
+                        <button string="Batal" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_academic_billing_wizard" model="ir.actions.act_window">
+            <field name="name">Generate Tagihan SPP &amp; UKT</field>
+            <field name="res_model">academic.billing.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
