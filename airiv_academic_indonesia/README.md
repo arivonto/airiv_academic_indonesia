@@ -39,11 +39,13 @@ An all-in-one Academic and Campus Management ERP built specifically for **Odoo 1
 
 The module was verified under live Odoo 18.0 Community conditions:
 
-1. **PDDikti Neo Feeder Sync**: Verified sandbox token generation and synchronized KRS / Grade payload with unique sync token logging.
-2. **Dapodik K-12 Validation**: Verified 10-digit NISN mapping and status transition to `synced_dapodik`.
-3. **EMIS 4.0 Kemenag Sync**: Verified Santri Mukim registry transition to `synced_emis`.
-4. **PIN SIVIL Generation**: Issued valid 14-digit national diploma PIN `552012026100001` and active SIVIL verification URL.
-5. **KRS & KHS Grade Calculation**: Verified SKS credit weights ($3.50$ IPS & IPK across multiple courses).
+1. **Universal Gateway Sandbox Initialization**: Generated verified mock token `SANDBOX_MOCK_TOKEN_DIKTI_5AF7EDE5B339`.
+2. **PDDikti Neo Feeder Sync**: Verified AKM and grade payload transmission with unique sync token `MOCK-SYNC-DIKTI-F9456634`.
+3. **Dapodik K-12 Validation**: Verified 10-digit NISN `0081234567` mapping and status transition to `synced_dapodik` (`DAPO-5390B919`).
+4. **EMIS 4.0 Kemenag Sync**: Verified Santri Mukim registry transition to `synced_emis` (`EMIS-6088DF56`).
+5. **PIN SIVIL Generation**: Issued valid 14-digit national diploma PIN `552012026100007` and active SIVIL verification URL `https://ijazah.kemdikbud.go.id/verify?pin=552012026100007`.
+6. **KRS & KHS Grade Calculation**: Verified SKS credit weights ($3.57$ IPS & IPK across 7 enrolled SKS).
+7. **Batch Invoicing**: Generated SPP Bulanan (Rp 950.000) and UKT Tier 6 (Rp 8.000.000) directly into `account.move`.
 
 ---
 
