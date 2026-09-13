@@ -2,8 +2,9 @@
 <odoo>
     <data>
         <menuitem id="menu_academic_root"
-                  name="Akademik &amp; Kampus"
-                  web_icon="airiv_academic_indonesia,static/description/icon.png"
+                  name="AIRIV Akademik &amp; Kampus"
+                  action="airiv_os_core.action_airiv_launchpad_academic"
+                  web_icon="airiv_academic_indonesia,static/description/airiv_store_icon_128.png"
                   sequence="5"/>
 
         <menuitem id="menu_academic_operations"

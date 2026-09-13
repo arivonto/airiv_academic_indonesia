@@ -48,6 +48,12 @@
             </field>
         </record>
 
+        <record id="action_academic_year" model="ir.actions.act_window">
+            <field name="name">Tahun Akademik</field>
+            <field name="res_model">academic.year</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
         <!-- 2. ACADEMIC FACULTY -->
         <record id="view_academic_faculty_tree" model="ir.ui.view">
             <field name="name">academic.faculty.list</field>
@@ -90,6 +96,12 @@
             </field>
         </record>
 
+        <record id="action_academic_faculty" model="ir.actions.act_window">
+            <field name="name">Fakultas</field>
+            <field name="res_model">academic.faculty</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
         <!-- 3. ACADEMIC PROGRAM -->
         <record id="view_academic_program_tree" model="ir.ui.view">
             <field name="name">academic.program.list</field>
@@ -128,6 +140,12 @@
                     </sheet>
                 </form>
             </field>
+        </record>
+
+        <record id="action_academic_program" model="ir.actions.act_window">
+            <field name="name">Program Studi</field>
+            <field name="res_model">academic.program</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <!-- 4. ACADEMIC COURSE -->
@@ -175,6 +193,12 @@
                     </sheet>
                 </form>
             </field>
+        </record>
+
+        <record id="action_academic_course" model="ir.actions.act_window">
+            <field name="name">Mata Kuliah</field>
+            <field name="res_model">academic.course</field>
+            <field name="view_mode">list,form</field>
         </record>
     </data>
 </odoo>
