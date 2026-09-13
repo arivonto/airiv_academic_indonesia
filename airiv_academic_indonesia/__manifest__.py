@@ -23,7 +23,7 @@ Equipped with an integrated Universal Government Integration Bridge for Indonesi
    - Native Offline Sandbox Simulation mode for zero-cost risk-free testing without live API keys.
    - 100% Odoo 18 Community Native - Always Free ($0.00) under LGPL-3.
 """,
-    'author': 'Riv Cloud Management',
+    'author': 'AIRIV',
     'website': 'https://airiv.id',
     'url': 'https://github.com/arivonto/airiv_academic_indonesia/blob/18.0/static/description/index.html',
     'license': 'LGPL-3',
